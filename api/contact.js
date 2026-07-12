@@ -42,8 +42,31 @@ export default async function handler(req, res) {
       `,
     };
 
-    // Send the email
-    await transporter.sendMail(mailOptions);
+    // Setup auto-reply email for the visitor
+    const autoReplyOptions = {
+      from: `"Sayan_CtrlZ" <${process.env.SMTP_USER}>`,
+      to: email,
+      subject: `Transmission Received: Thanks for connecting!`,
+      text: `Hello ${name},\n\nI have received your message and will get back to you within 24 hours.\n\nYour original message:\n${message}\n\nBest,\nSayan_CtrlZ`,
+      html: `
+        <div style="font-family: monospace; padding: 20px; border: 4px solid black; background-color: #f4f4f0; color: black;">
+          <h2 style="text-transform: uppercase; border-bottom: 2px solid black; padding-bottom: 10px; margin-top: 0;">Transmission Confirmed</h2>
+          <p>Hello <strong>${name}</strong>,</p>
+          <p>This is an automated confirmation that your transmission has been successfully received by my mainframe. I will review your query and respond typically within 24 hours.</p>
+          <div style="background-color: #ffffff; padding: 15px; border: 2px solid black; margin-top: 20px;">
+            <p style="font-weight: bold; margin-top: 0; margin-bottom: 10px;">YOUR ORIGINAL MESSAGE:</p>
+            <p style="white-space: pre-wrap; margin: 0; opacity: 0.8;">${message}</p>
+          </div>
+          <p style="font-weight: bold; margin-top: 20px; font-size: 1.2em;">>_ Sayan_CtrlZ</p>
+        </div>
+      `,
+    };
+
+    // Send both emails concurrently
+    await Promise.all([
+      transporter.sendMail(mailOptions),
+      transporter.sendMail(autoReplyOptions)
+    ]);
 
     return res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {

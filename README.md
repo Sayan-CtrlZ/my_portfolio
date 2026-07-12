@@ -29,6 +29,7 @@ A high-performance, responsive portfolio showcasing professional software develo
 * **Dynamic Typestate Role Selector:** Responsive, live typing simulator that highlights multiple roles (Python Developer, Data Scientist, Data Analyst, Backend Coder) dynamically.
 * **Expandable Grid Matrix:** Toggleable 3-column skills list with lazy node load-outs.
 * **Fully Responsive:** Beautiful layout structure fluidly adaptive from small screens up to high-resolution desktop environments.
+* **Secure SMTP Backend Integration:** Custom Vercel Serverless Function API powering the contact form, securely sending emails via Gmail SMTP without exposing credentials in the client.
 
 ---
 
@@ -68,4 +69,5 @@ This project is fully optimized for continuous delivery on **Vercel**, **Render*
 
 1. Install the Vercel CLI or import the GitHub repository to the Vercel dashboard.
 2. Set the build command to `npm run build` and the output directory to `dist`.
-3. Deploy and enjoy instantaneous cold-starts.
+3. In your Vercel Dashboard Settings, add your environment variables (`SMTP_USER` and `SMTP_PASS`) for the contact form backend.
+4. Deploy and enjoy instantaneous cold-starts.

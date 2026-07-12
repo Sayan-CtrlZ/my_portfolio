@@ -11,6 +11,7 @@ export default function Footer() {
   const footerRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [utcTime, setUtcTime] = useState("");
 
   // Keep a live UTC clock ticking, which is very Neo-Brutalist
@@ -68,12 +69,32 @@ export default function Footer() {
     { scope: containerRef }
   );
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.email.trim() && formData.message.trim()) {
-      setIsSubmitted(true);
-      setTimeout(() => setIsSubmitted(false), 3000);
-      setFormData({ name: "", email: "", message: "" });
+      setIsSubmitting(true);
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          setIsSubmitted(true);
+          setTimeout(() => setIsSubmitted(false), 3000);
+          setFormData({ name: "", email: "", message: "" });
+        } else {
+          alert("TRANSMISSION FAILED. SERVER OFFLINE.");
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        alert("TRANSMISSION FAILED. NETWORK ERROR.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -135,9 +156,12 @@ export default function Footer() {
               
               <button 
                 type="submit" 
-                className="w-full bg-black hover:bg-brutal-green py-4 text-white hover:text-black font-black flex items-center justify-center gap-3 transition-colors cursor-pointer group border-2 border-black shadow-brutal-sm active:translate-x-1 active:translate-y-1 active:shadow-none"
+                disabled={isSubmitting}
+                className="w-full bg-black hover:bg-brutal-green py-4 text-white hover:text-black font-black flex items-center justify-center gap-3 transition-colors cursor-pointer group border-2 border-black shadow-brutal-sm active:translate-x-1 active:translate-y-1 active:shadow-none disabled:opacity-50"
               >
-                {isSubmitted ? (
+                {isSubmitting ? (
+                  <>TRANSMITTING...</>
+                ) : isSubmitted ? (
                   <><Check className="w-5 h-5" /> TRANSMISSION SENT</>
                 ) : (
                   <>INITIATE CONNECTION <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
@@ -151,7 +175,7 @@ export default function Footer() {
         <div className="flex flex-col gap-6">
           {/* Main Email Action */}
           <a 
-            href="mailto:officialsayan36@gmail.com" 
+            href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} 
             className="group brutal-btn-hover w-full bg-white border-4 border-black p-6 md:p-10 shadow-brutal flex flex-col md:flex-row justify-between items-start md:items-center gap-6 rotate-[0.5deg]"
           >
             <div className="flex items-center gap-6 md:gap-8">
@@ -160,7 +184,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col justify-center overflow-hidden">
                 <span className="block font-mono text-xs md:text-sm font-bold text-black/60 mb-1">PRIMARY_CONTACT_PROTOCOL</span>
-                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight truncate w-full break-all">officialsayan36@gmail.com</span>
+                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight truncate w-full break-all">{import.meta.env.VITE_CONTACT_EMAIL}</span>
               </div>
             </div>
             <span className="font-mono text-sm font-black bg-brutal-yellow px-6 py-3 border-4 border-black shadow-brutal-sm hidden md:block group-hover:bg-brutal-green transition-colors">

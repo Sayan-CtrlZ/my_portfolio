@@ -81,3 +81,25 @@
 ::-webkit-scrollbar-corner {
   background-color: var(--color-brutal-dark);
 }
+
+@keyframes brutal-color-cycle {
+  0%   { background-color: var(--color-brutal-orange); }
+  7%   { background-color: var(--color-brutal-green); }
+  14%  { background-color: var(--color-brutal-yellow); }
+  21%  { background-color: #ffffff; }
+  28%  { background-color: var(--color-brutal-pink); }
+  35%  { background-color: var(--color-brutal-blue); }
+  42%  { background-color: var(--color-brutal-purple); }
+  49%  { background-color: var(--color-brutal-cyan); }
+  56%  { background-color: #ff3366; }
+  63%  { background-color: #ccff00; }
+  70%  { background-color: #00ffcc; }
+  77%  { background-color: #ff9900; }
+  84%  { background-color: #ff00ff; }
+  91%  { background-color: #33ccff; }
+  100% { background-color: var(--color-brutal-orange); }
+}
+
+.brutal-color-cycle {
+  animation: brutal-color-cycle 15s infinite;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Neo Brutalist Portfolio",
+  "description": "A personal portfolio website designed with a bold Neo Brutalism aesthetic. Features interactive GSAP scroll-triggered animations, saturated flat colors, thick borders, hard offsets, and rapid transitions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

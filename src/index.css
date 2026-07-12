@@ -14,7 +14,7 @@
   --color-brutal-pink: #FF4D80;
   --color-brutal-cyan: #00E5FF;
   --color-brutal-dark: #000000;
-  --color-brutal-light: #FFDE00; /* Use the loud bright yellow as the dynamic base background */
+  --color-brutal-light: #F4F4F0; /* Use light off-white for dynamic high-contrast background */
   
   /* Brutalist Shadows */
   --shadow-brutal-sm: 4px 4px 0px #000000;

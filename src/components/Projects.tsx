@@ -63,7 +63,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 lg:px-24 bg-brutal-purple border-b-4 border-black relative"
+      className="py-24 px-6 md:px-12 lg:px-24 bg-brutal-light border-b-4 border-black relative"
     >
       {/* Brutalist scratch marks and grid in the background */}
       <div className="absolute inset-0 brutal-scratches opacity-20 pointer-events-none mix-blend-multiply"></div>
@@ -73,10 +73,10 @@ export default function Projects() {
         
         {/* Section Header */}
         <div className="mb-16 text-center md:text-left">
-          <span className="bg-brutal-green text-black font-mono font-bold text-xs px-3 py-1 uppercase shadow-brutal-sm rotate-[-1deg] inline-block mb-3">
+          <span className="bg-brutal-purple text-white font-mono font-bold text-xs px-3 py-1 uppercase shadow-brutal-sm rotate-[1.5deg] inline-block mb-3">
             CURATED PRODUCTION WORK
           </span>
-          <h2 className="text-4xl md:text-6xl font-black uppercase text-white leading-none">
+          <h2 className="text-4xl md:text-6xl font-black uppercase text-brutal-dark leading-none">
             PROJECTS & EXPERIMENTS
           </h2>
         </div>
@@ -88,13 +88,13 @@ export default function Projects() {
             return (
               <div
                 key={project.id}
-                className="project-card flex flex-col md:flex-row border-4 border-black bg-white shadow-brutal hover:shadow-brutal-lg hover:translate-y-[-4px] transition-all duration-100"
+                className={`project-card flex flex-col md:flex-row border-4 border-black ${project.color} shadow-brutal hover:shadow-brutal-lg hover:translate-y-[-4px] transition-all duration-100`}
               >
                 {/* Visual Placeholder block (Alt left/right on desktop) */}
                 <div
                   className={`w-full md:w-2/5 p-8 flex items-center justify-center border-b-4 md:border-b-0 md:border-r-4 border-black ${
                     isEven ? "md:order-1" : "md:order-2 md:border-l-4 md:border-r-0"
-                  } ${project.color} relative overflow-hidden group min-h-[220px]`}
+                  } bg-white relative overflow-hidden group min-h-[220px]`}
                 >
                   {/* Brutalist design lines inside visual block */}
                   <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
@@ -120,7 +120,7 @@ export default function Projects() {
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="bg-brutal-light text-black border-2 border-black font-mono text-xs font-bold px-2.5 py-0.5"
+                          className="bg-white text-black border-2 border-black font-mono text-xs font-bold px-2.5 py-0.5"
                         >
                           #{tag}
                         </span>
@@ -133,7 +133,7 @@ export default function Projects() {
                     </h3>
 
                     {/* Description */}
-                    <p className="font-mono text-sm font-bold text-gray-700 leading-relaxed mb-6">
+                    <p className="font-mono text-sm font-bold text-black leading-relaxed mb-6">
                       {project.description}
                     </p>
                   </div>

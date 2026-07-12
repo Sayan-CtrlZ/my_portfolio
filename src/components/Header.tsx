@@ -17,7 +17,7 @@ export default function Header() {
     { label: "MANIFESTO", href: "#about" },
     { label: "TOOLKIT", href: "#skills" },
     { label: "PROJECTS", href: "#projects" },
-    { label: "CONNECT", href: "#contact" },
+    { label: "GITHUB", href: "https://github.com/Sayan-CtrlZ" },
   ];
 
   return (
@@ -45,6 +45,8 @@ export default function Header() {
             <a
               key={link.label}
               href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="px-6 lg:px-10 py-3 bg-white border-2 border-black hover:bg-black hover:text-white font-mono text-sm font-black transition-all steps(2) uppercase select-none"
             >
               {link.label}
@@ -76,6 +78,8 @@ export default function Header() {
             <a
               key={link.label}
               href={link.href}
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-3 border-2 border-black font-sans font-black text-lg hover:bg-brutal-yellow transition-colors uppercase"
             >

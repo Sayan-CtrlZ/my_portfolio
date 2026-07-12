@@ -116,7 +116,7 @@ export default function Skills() {
       {/* Brutalist scratch marks in the background */}
       <div className="absolute inset-0 brutal-scratches opacity-10 pointer-events-none"></div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-[1600px] w-full mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
@@ -155,7 +155,7 @@ export default function Skills() {
           {displayedSkills.map((skill) => (
             <div
               key={skill.name}
-              className={`skill-card border-4 border-black ${skill.color} p-5 shadow-brutal hover:translate-y-[-4px] hover:shadow-brutal-lg transition-all duration-100 flex flex-col justify-between aspect-[4/3] sm:aspect-square group relative overflow-hidden`}
+              className={`skill-card border-4 border-black ${skill.color} p-5 shadow-brutal hover:translate-y-[-4px] hover:shadow-brutal-lg transition-all duration-100 flex flex-col justify-between min-h-[280px] group relative overflow-hidden`}
             >
               {/* Card Header */}
               <div className="flex justify-between items-start">
@@ -168,13 +168,16 @@ export default function Skills() {
               </div>
 
               {/* Skill Details */}
-              <div className="relative z-10">
+              <div className="relative z-10 flex-grow mt-4">
                 <span className="block font-mono text-[10px] font-bold text-black/60 mb-1">
                   SKILL_NODE //
                 </span>
-                <h3 className="text-xl md:text-2xl font-black text-black leading-tight uppercase tracking-tight">
+                <h3 className="text-xl md:text-2xl font-black text-black leading-tight uppercase tracking-tight mb-2">
                   {skill.name}
                 </h3>
+                <p className="font-mono text-xs md:text-sm font-bold text-gray-800 leading-snug">
+                  {skill.description}
+                </p>
               </div>
 
               {/* Level indicator stripe */}

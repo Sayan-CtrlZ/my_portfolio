@@ -86,7 +86,11 @@ export default function Footer() {
       ref={containerRef}
       className="py-20 px-6 md:px-12 lg:px-24 bg-brutal-orange border-b-4 border-black relative overflow-hidden"
     >
-      <div ref={footerRef} className="max-w-5xl mx-auto flex flex-col gap-12">
+      {/* Brutalist scratch marks and grid in the background */}
+      <div className="absolute inset-0 brutal-scratches opacity-15 pointer-events-none mix-blend-multiply"></div>
+      <div className="absolute inset-0 brutal-crosshatch opacity-10 pointer-events-none"></div>
+
+      <div ref={footerRef} className="max-w-[1600px] w-full mx-auto flex flex-col gap-12 relative z-10">
         
         {/* Call to Action Row */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 border-b-4 border-black pb-12">
@@ -150,7 +154,7 @@ export default function Footer() {
           </a>
 
           <a
-            href="https://github.com/officialsayan36"
+            href="https://github.com/Sayan-CtrlZ"
             target="_blank"
             rel="noopener noreferrer"
             className="brutal-btn-hover flex items-center justify-between p-5 bg-brutal-yellow border-4 border-black shadow-brutal text-black rotate-[0.5deg]"
@@ -159,13 +163,13 @@ export default function Footer() {
               <Github className="w-6 h-6" />
               <div>
                 <span className="block font-mono text-[10px] font-bold text-black/60">SOURCE REPOS</span>
-                <span className="font-sans font-black text-sm uppercase">GITHUB / Sayan_CtrlZ</span>
+                <span className="font-sans font-black text-sm uppercase">GITHUB / Sayan-CtrlZ</span>
               </div>
             </div>
           </a>
 
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/22sayanshil/"
             target="_blank"
             rel="noopener noreferrer"
             className="brutal-btn-hover flex items-center justify-between p-5 bg-brutal-green border-4 border-black shadow-brutal text-black rotate-[-1deg]"

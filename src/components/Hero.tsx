@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ArrowDownRight, Terminal, Sparkles, Code2 } from "lucide-react";
+import HoverPixelImage from "./HoverPixelImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -171,9 +172,12 @@ export default function Hero() {
         + SYS_LOC_0x7FFF / CHASSIS_ACTIVE +
       </div>
 
-      <div className="hero-scroll-rotate relative z-10 max-w-5xl w-full flex flex-col gap-6 origin-center">
-        {/* Dynamic Tag / Status */}
-        <div className="fade-in-element flex flex-wrap gap-3 items-center">
+      <div className="hero-scroll-rotate relative z-10 max-w-[1600px] w-full flex flex-col lg:flex-row gap-12 origin-center mx-auto items-center">
+        
+        {/* Left Side: Content */}
+        <div className="w-full lg:w-3/5 flex flex-col gap-6">
+          {/* Dynamic Tag / Status */}
+          <div className="fade-in-element flex flex-wrap gap-3 items-center">
           <span className="bg-brutal-orange text-black border-2 border-black font-mono font-bold text-xs md:text-sm px-3 py-1 uppercase shadow-brutal-sm flex items-center gap-1.5 rotate-[-1deg]">
             <Code2 className="w-4 h-4" /> PYTHON & BACKEND
           </span>
@@ -223,16 +227,42 @@ export default function Hero() {
             VIEW PROJECTS
           </a>
         </div>
-      </div>
+        </div>
 
-      {/* Retro Floating Decorative Sticker (Neo Brutalist element) */}
-      <div className="fade-in-element absolute right-6 md:right-16 bottom-8 md:bottom-16 w-24 h-24 md:w-36 md:h-36 hidden sm:block pointer-events-none">
-        <div className="spinning-badge w-full h-full border-4 border-black bg-brutal-pink shadow-brutal flex items-center justify-center relative rotate-12">
-          <span className="text-center font-mono font-black text-xs md:text-sm text-black p-2 leading-tight">
-            NO RULES<br />★ ★ ★<br />JUST SPEED
-          </span>
+        {/* Right Side: Photo in Neo-Brutalist Laptop */}
+        <div className="w-full lg:w-2/5 flex justify-center lg:justify-start fade-in-element relative z-20 lg:-ml-12 lg:-mt-12">
+          
+          <div className="w-full max-w-[460px] lg:max-w-[580px] flex flex-col items-center rotate-[3deg] hover:rotate-0 hover:translate-y-[-6px] transition-all duration-300 group cursor-crosshair">
+            
+            {/* Laptop Screen / Lid */}
+            <div className="w-full border-4 border-black bg-black p-3 sm:p-5 pb-6 sm:pb-8 shadow-brutal-lg relative z-20 rounded-t-xl lg:rounded-t-3xl flex flex-col">
+              
+              {/* Webcam */}
+              <div className="absolute top-2 sm:top-3 left-1/2 -translate-x-1/2 w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#111] border border-gray-700 flex items-center justify-center">
+                 <div className="w-1 h-1 rounded-full bg-blue-500/50"></div>
+              </div>
+              
+              {/* Screen Content (The Image) */}
+              <div className="w-full aspect-square bg-brutal-light border-2 border-black overflow-hidden relative mt-1 sm:mt-2">
+                <HoverPixelImage src="/image.png" alt="Sayan_CtrlZ" />
+              </div>
+              
+              {/* Brand Logo on bottom bezel */}
+              <div className="absolute bottom-1.5 sm:bottom-2 left-1/2 -translate-x-1/2 text-[9px] sm:text-[10px] text-white/70 font-mono tracking-widest select-none">
+                SAYAN_OS
+              </div>
+            </div>
+
+            {/* Laptop Base (Keyboard Deck) */}
+            <div className="w-[108%] h-6 sm:h-10 border-4 border-black bg-brutal-orange shadow-brutal-lg -mt-1 relative z-10 rounded-b-xl lg:rounded-b-2xl flex flex-col justify-end items-center px-4 pb-1 sm:pb-1.5 transition-colors group-hover:bg-brutal-yellow">
+              {/* Trackpad indentation */}
+              <div className="w-16 sm:w-24 h-1.5 sm:h-3 border-2 border-black/40 bg-black/10 rounded-sm"></div>
+            </div>
+
+          </div>
         </div>
       </div>
+
     </section>
   );
 }

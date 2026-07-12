@@ -26,7 +26,7 @@ export default function Header() {
         scrolled ? "bg-brutal-yellow py-3" : "bg-white py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-[1600px] w-full mx-auto px-8 md:px-16 flex items-center justify-between">
         
         {/* Logo / Brand */}
         <a
@@ -45,14 +45,14 @@ export default function Header() {
             <a
               key={link.label}
               href={link.href}
-              className="px-4 py-2 border-2 border-transparent hover:border-black hover:bg-black hover:text-white font-mono text-sm font-black transition-all steps(2) uppercase select-none"
+              className="px-6 lg:px-10 py-3 bg-white border-2 border-black hover:bg-black hover:text-white font-mono text-sm font-black transition-all steps(2) uppercase select-none"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="brutal-btn-hover bg-brutal-orange text-black font-mono font-black text-xs px-4 py-2.5 border-2 border-black shadow-brutal-sm uppercase"
+            className="brutal-btn-hover bg-brutal-orange text-black font-mono font-black text-xs px-8 lg:px-12 py-3.5 border-2 border-black shadow-brutal-sm uppercase"
           >
             CONNECT
           </a>

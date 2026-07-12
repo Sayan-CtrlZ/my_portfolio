@@ -77,15 +77,15 @@ export default function About() {
       {/* Brutalist scratch marks in the background */}
       <div className="absolute inset-0 brutal-scratches opacity-10 pointer-events-none"></div>
       
-      <div className="about-scroll-rotate max-w-6xl mx-auto flex flex-col md:flex-row gap-12 items-stretch relative z-10 origin-center">
+      <div className="about-scroll-rotate max-w-[1600px] w-full mx-auto flex flex-col md:flex-row gap-12 items-stretch relative z-10 origin-center">
         
         {/* Left Side: Big Title Banner */}
         <div className="w-full md:w-2/5 flex flex-col justify-between items-start gap-6">
           <div>
-            <span className="bg-black text-white font-mono font-bold text-xs px-3 py-1 uppercase shadow-brutal-sm rotate-[-2deg] inline-block mb-4">
+            <span className="bg-black text-white font-mono font-bold text-sm md:text-base px-4 py-2 uppercase shadow-brutal-sm rotate-[-2deg] inline-block mb-6">
               INTENTIONAL DESIGN
             </span>
-            <h2 className="text-4xl md:text-6xl font-black leading-none uppercase text-brutal-dark">
+            <h2 className="text-5xl md:text-7xl lg:text-[6.5rem] font-black leading-[0.9] uppercase text-brutal-dark tracking-tighter">
               THE MANIFESTO
             </h2>
           </div>

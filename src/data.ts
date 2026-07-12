@@ -3,6 +3,7 @@ export interface Skill {
   category: "frontend" | "data-science" | "backend" | "tools";
   level: string;
   color: string;
+  description: string;
 }
 
 export interface Project {
@@ -18,31 +19,31 @@ export interface Project {
 
 export const SKILLS: Skill[] = [
   // Backend
-  { name: "Python", category: "backend", level: "Expert", color: "bg-brutal-yellow" },
-  { name: "FastAPI", category: "backend", level: "Expert", color: "bg-brutal-green" },
-  { name: "Flask", category: "backend", level: "Advanced", color: "bg-brutal-orange" },
-  { name: "PostgreSQL & SQL", category: "backend", level: "Expert", color: "bg-brutal-cyan" },
-  { name: "REST APIs", category: "backend", level: "Expert", color: "bg-brutal-pink" },
-  { name: "MySQL / SQLite", category: "backend", level: "Advanced", color: "bg-brutal-purple" },
+  { name: "Python", category: "backend", level: "Expert", color: "bg-brutal-yellow", description: "Core language used for high-performance scripts, automation, and stable backend architectures." },
+  { name: "FastAPI", category: "backend", level: "Expert", color: "bg-brutal-green", description: "Building highly concurrent, async REST APIs with automatic OpenAPI generation." },
+  { name: "Flask", category: "backend", level: "Advanced", color: "bg-brutal-orange", description: "Developing robust microservices and lightweight APIs with quick turnarounds." },
+  { name: "PostgreSQL & SQL", category: "backend", level: "Expert", color: "bg-brutal-cyan", description: "Designing complex schemas, optimizing queries, and managing relational databases." },
+  { name: "REST APIs", category: "backend", level: "Expert", color: "bg-brutal-pink", description: "Creating and consuming scalable, stateless, and efficient web services." },
+  { name: "MySQL / SQLite", category: "backend", level: "Advanced", color: "bg-brutal-purple", description: "Handling structured data for local environments and high-throughput production servers." },
 
   // Data Science
-  { name: "Pandas", category: "data-science", level: "Expert", color: "bg-brutal-pink" },
-  { name: "NumPy", category: "data-science", level: "Expert", color: "bg-brutal-yellow" },
-  { name: "Seaborn", category: "data-science", level: "Advanced", color: "bg-brutal-green" },
-  { name: "OpenCV", category: "data-science", level: "Advanced", color: "bg-brutal-orange" },
-  { name: "TensorFlow", category: "data-science", level: "Advanced", color: "bg-brutal-cyan" },
+  { name: "Pandas", category: "data-science", level: "Expert", color: "bg-brutal-pink", description: "Data manipulation, cleaning, and preprocessing pipelines at scale." },
+  { name: "NumPy", category: "data-science", level: "Expert", color: "bg-brutal-yellow", description: "High-performance numerical computations and array operations." },
+  { name: "Seaborn", category: "data-science", level: "Advanced", color: "bg-brutal-green", description: "Statistical data visualization to uncover patterns and trends." },
+  { name: "OpenCV", category: "data-science", level: "Advanced", color: "bg-brutal-orange", description: "Computer vision applications, image processing, and real-time inference." },
+  { name: "TensorFlow", category: "data-science", level: "Advanced", color: "bg-brutal-cyan", description: "Building and deploying deep learning models for complex AI tasks." },
 
   // Frontend
-  { name: "TypeScript", category: "frontend", level: "Advanced", color: "bg-brutal-cyan" },
-  { name: "JavaScript", category: "frontend", level: "Expert", color: "bg-brutal-green" },
-  { name: "React & Next.js", category: "frontend", level: "Advanced", color: "bg-brutal-purple" },
+  { name: "TypeScript", category: "frontend", level: "Advanced", color: "bg-brutal-cyan", description: "Adding static typing to JavaScript for robust and maintainable frontend logic." },
+  { name: "JavaScript", category: "frontend", level: "Expert", color: "bg-brutal-green", description: "Core frontend language for dynamic, interactive, and modern web applications." },
+  { name: "React & Next.js", category: "frontend", level: "Advanced", color: "bg-brutal-purple", description: "Developing component-based UIs and SEO-friendly server-rendered web apps." },
 
   // Tools (Data Viz, Dev & Cloud)
-  { name: "Power BI", category: "tools", level: "Advanced", color: "bg-brutal-purple" },
-  { name: "Tableau", category: "tools", level: "Advanced", color: "bg-brutal-orange" },
-  { name: "MS Excel", category: "tools", level: "Expert", color: "bg-brutal-yellow" },
-  { name: "Docker", category: "tools", level: "Advanced", color: "bg-brutal-cyan" },
-  { name: "Git", category: "tools", level: "Advanced", color: "bg-brutal-pink" },
+  { name: "Power BI", category: "tools", level: "Advanced", color: "bg-brutal-purple", description: "Creating interactive dashboards and business intelligence reports." },
+  { name: "Tableau", category: "tools", level: "Advanced", color: "bg-brutal-orange", description: "Visual analytics for deep insights and compelling data storytelling." },
+  { name: "MS Excel", category: "tools", level: "Expert", color: "bg-brutal-yellow", description: "Advanced data analysis, pivot tables, macros, and financial modeling." },
+  { name: "Docker", category: "tools", level: "Advanced", color: "bg-brutal-cyan", description: "Containerizing applications for consistent environments across development and production." },
+  { name: "Git", category: "tools", level: "Advanced", color: "bg-brutal-pink", description: "Version control and collaborative code management workflows." },
 ];
 
 export const PROJECTS: Project[] = [

@@ -65,7 +65,11 @@ export default function Projects() {
       ref={containerRef}
       className="py-24 px-6 md:px-12 lg:px-24 bg-brutal-purple border-b-4 border-black relative"
     >
-      <div className="max-w-5xl mx-auto">
+      {/* Brutalist scratch marks and grid in the background */}
+      <div className="absolute inset-0 brutal-scratches opacity-20 pointer-events-none mix-blend-multiply"></div>
+      <div className="absolute inset-0 brutal-crosshatch opacity-10 pointer-events-none"></div>
+
+      <div className="max-w-[1600px] w-full mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="mb-16 text-center md:text-left">

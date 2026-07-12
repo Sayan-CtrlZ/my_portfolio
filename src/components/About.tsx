@@ -122,7 +122,7 @@ export default function About() {
 
               {/* Directly structured bio sentences */}
               <p className="text-sm md:text-lg font-mono text-gray-700 leading-relaxed font-bold">
-                I am a 2nd-year student pursuing a Bachelor of Science (B.S.) in Data Science and Applications at IIT Madras. I specialize in designing backend architectures, deploying clean REST APIs using FastAPI/Flask, manipulating datasets with Pandas, and presenting highly functional interfaces.
+                I am a 2nd-year student pursuing a Bachelor of Science (B.S) in Data Science and Applications at IIT Madras. I specialize in designing backend architectures, deploying clean REST APIs using FastAPI/Flask, manipulating datasets with Pandas, and presenting highly functional interfaces.
               </p>
             </div>
 

@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Footer() {
   const containerRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
-  const [emailInput, setEmailInput] = useState("");
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [utcTime, setUtcTime] = useState("");
 
@@ -70,10 +70,10 @@ export default function Footer() {
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (emailInput.trim()) {
+    if (formData.email.trim() && formData.message.trim()) {
       setIsSubmitted(true);
       setTimeout(() => setIsSubmitted(false), 3000);
-      setEmailInput("");
+      setFormData({ name: "", email: "", message: "" });
     }
   };
 
@@ -99,25 +99,49 @@ export default function Footer() {
           </h2>
           
           <div className="flex flex-col lg:flex-row gap-10 items-start lg:items-center justify-between border-t-4 border-black pt-8">
-            <p className="font-mono text-lg md:text-xl font-bold text-black/80 max-w-2xl leading-relaxed">
-              Drop me an email, reach out on social channels, or submit your email to receive backend engineering and data science articles directly.
+            <p className="font-mono text-lg md:text-xl font-bold text-black/80 max-w-xl leading-relaxed mt-2">
+              Drop me an email, reach out on social channels, or use the terminal below to send a direct ping. I typically respond within 24 hours.
             </p>
             
-            <form onSubmit={handleSubscribe} className="w-full lg:w-[500px] flex border-4 border-black shadow-brutal relative rotate-[1deg]">
-              <div className="absolute -top-4 -left-3 bg-brutal-light border-2 border-black px-2 py-0.5 font-mono text-[10px] font-black rotate-[-3deg] z-10">NEWSLETTER.EXE</div>
-              <input 
-                type="email" 
-                placeholder="YOUR_EMAIL@DOMAIN.COM" 
-                value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
-                className="w-full bg-brutal-yellow px-6 py-5 font-mono text-sm md:text-base font-black text-black placeholder-black/50 focus:outline-none border-r-4 border-black" 
+            <form onSubmit={handleSubscribe} className="w-full lg:w-[600px] flex flex-col gap-4 border-4 border-black bg-brutal-light p-6 shadow-brutal relative rotate-[1deg]">
+              <div className="absolute -top-4 -left-3 bg-brutal-yellow border-2 border-black px-2 py-0.5 font-mono text-[10px] font-black rotate-[-3deg] z-10">CONTACT.EXE</div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input 
+                  type="text" 
+                  placeholder="NAME / ALIAS" 
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full bg-white px-4 py-3 font-mono text-sm font-black text-black placeholder-black/50 focus:outline-none border-2 border-black" 
+                  required 
+                />
+                <input 
+                  type="email" 
+                  placeholder="YOUR@EMAIL.COM" 
+                  value={formData.email}
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  className="w-full bg-white px-4 py-3 font-mono text-sm font-black text-black placeholder-black/50 focus:outline-none border-2 border-black" 
+                  required 
+                />
+              </div>
+              <textarea 
+                placeholder="PROJECT DETAILS / MESSAGE..." 
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                rows={4}
+                className="w-full bg-white px-4 py-3 font-mono text-sm font-black text-black placeholder-black/50 focus:outline-none border-2 border-black resize-none" 
                 required 
               />
+              
               <button 
                 type="submit" 
-                className="bg-black hover:bg-brutal-green px-6 md:px-8 py-5 text-white hover:text-black font-black flex items-center justify-center transition-colors cursor-pointer group"
+                className="w-full bg-black hover:bg-brutal-green py-4 text-white hover:text-black font-black flex items-center justify-center gap-3 transition-colors cursor-pointer group border-2 border-black shadow-brutal-sm active:translate-x-1 active:translate-y-1 active:shadow-none"
               >
-                {isSubmitted ? <Check className="w-6 h-6" /> : <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                {isSubmitted ? (
+                  <><Check className="w-5 h-5" /> TRANSMISSION SENT</>
+                ) : (
+                  <>INITIATE CONNECTION <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
+                )}
               </button>
             </form>
           </div>

@@ -6,10 +6,21 @@ export default function HoverPixelImage({ src, alt }: { src: string; alt: string
   const containerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const gridSize = 30; // 30x30 grid of blocks
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  const gridSize = 20; // Reduced from 30 to 20 for massive performance boost
   const totalBlocks = gridSize * gridSize;
 
   useGSAP(() => {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
     // Intro animation: exact animation we get on opening the site
     gsap.to(".pixel-block", {
       opacity: 0,
@@ -26,7 +37,7 @@ export default function HoverPixelImage({ src, alt }: { src: string; alt: string
   }, { scope: containerRef });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!gridRef.current) return;
+    if (!gridRef.current || isMobile) return;
     
     const rect = gridRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -76,21 +87,23 @@ export default function HoverPixelImage({ src, alt }: { src: string; alt: string
       />
 
       {/* Grid Overlay */}
-      <div 
-        ref={gridRef}
-        className="absolute inset-0 z-20 grid pointer-events-none"
-        style={{
-          gridTemplateColumns: `repeat(${gridSize}, minmax(0, 1fr))`,
-          gridTemplateRows: `repeat(${gridSize}, minmax(0, 1fr))`,
-        }}
-      >
-        {Array.from({ length: totalBlocks }).map((_, i) => (
-          <div 
-            key={i} 
-            className="pixel-block bg-white w-full h-full border-[0.5px] border-black/20" 
-          />
-        ))}
-      </div>
+      {!isMobile && (
+        <div 
+          ref={gridRef}
+          className="absolute inset-0 z-20 grid pointer-events-none"
+          style={{
+            gridTemplateColumns: `repeat(${gridSize}, minmax(0, 1fr))`,
+            gridTemplateRows: `repeat(${gridSize}, minmax(0, 1fr))`,
+          }}
+        >
+          {Array.from({ length: totalBlocks }).map((_, i) => (
+            <div 
+              key={i} 
+              className="pixel-block bg-white w-full h-full border-[0.5px] border-black/20" 
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

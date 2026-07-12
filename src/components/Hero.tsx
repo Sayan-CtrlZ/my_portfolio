@@ -58,6 +58,7 @@ export default function Hero() {
 
   useGSAP(
     () => {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       const timeline = gsap.timeline();
@@ -167,10 +168,7 @@ export default function Hero() {
       <div className="absolute inset-0 brutal-scratches opacity-15 pointer-events-none"></div>
       <div className="absolute inset-0 brutal-crosshatch opacity-10 pointer-events-none"></div>
 
-      {/* Decorative mechanical crosshairs */}
-      <div className="absolute top-8 right-8 font-mono text-[10px] text-black/35 select-none pointer-events-none hidden md:block">
-        + SYS_LOC_0x7FFF / CHASSIS_ACTIVE +
-      </div>
+
 
       <div className="hero-scroll-rotate relative z-10 max-w-[1600px] w-full flex flex-col lg:flex-row gap-12 origin-center mx-auto items-center">
         

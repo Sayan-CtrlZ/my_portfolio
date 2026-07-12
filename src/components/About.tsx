@@ -12,6 +12,7 @@ export default function About() {
 
   useGSAP(
     () => {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       if (prefersReducedMotion) {

@@ -23,6 +23,7 @@ export default function Skills() {
 
   useGSAP(
     () => {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (prefersReducedMotion) {
         gsap.fromTo(
@@ -111,7 +112,7 @@ export default function Skills() {
     <section
       id="skills"
       ref={containerRef}
-      className="py-20 px-6 md:px-12 lg:px-24 bg-brutal-light border-b-4 border-black relative"
+      className="py-20 px-6 md:px-12 lg:px-24 bg-brutal-light border-b-4 border-black relative overflow-hidden"
     >
       {/* Brutalist scratch marks in the background */}
       <div className="absolute inset-0 brutal-scratches opacity-10 pointer-events-none"></div>

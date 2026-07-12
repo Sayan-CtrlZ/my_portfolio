@@ -12,6 +12,7 @@ export default function Projects() {
 
   useGSAP(
     () => {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       const cards = gsap.utils.toArray(".project-card");
@@ -63,7 +64,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={containerRef}
-      className="py-24 px-6 md:px-12 lg:px-24 bg-brutal-light border-b-4 border-black relative"
+      className="py-24 px-6 md:px-12 lg:px-24 bg-brutal-light border-b-4 border-black relative overflow-hidden"
     >
       {/* Brutalist scratch marks and grid in the background */}
       <div className="absolute inset-0 brutal-scratches opacity-20 pointer-events-none mix-blend-multiply"></div>

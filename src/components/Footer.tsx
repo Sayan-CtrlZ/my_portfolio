@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Mail, Github, Linkedin, ArrowUp, Send, Check } from "lucide-react";
+import { Mail, Github, Linkedin, ArrowUp, Send, Check, Phone, Instagram } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +26,7 @@ export default function Footer() {
 
   useGSAP(
     () => {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (prefersReducedMotion) {
         gsap.fromTo(
@@ -91,97 +92,94 @@ export default function Footer() {
       <div className="absolute inset-0 brutal-crosshatch opacity-10 pointer-events-none"></div>
 
       <div ref={footerRef} className="max-w-[1600px] w-full mx-auto flex flex-col gap-12 relative z-10">
-        
-        {/* Call to Action Row */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 border-b-4 border-black pb-12">
-          <div className="max-w-xl">
-            <span className="bg-white text-black font-mono font-bold text-xs px-3 py-1 uppercase shadow-brutal-sm rotate-[1deg] inline-block mb-3">
-              LET'S BIND CHANNELS
-            </span>
-            <h2 className="text-4xl md:text-7xl font-black uppercase text-black leading-none">
-              HAVE A PROJECT IN MIND?
-            </h2>
-            <p className="font-mono text-sm font-bold text-black/80 mt-4 leading-relaxed">
+        {/* Massive Call to Action Block */}
+        <div className="mb-4 border-4 border-black bg-white p-8 md:p-14 shadow-brutal-lg rotate-[-0.5deg]">
+          <h2 className="text-5xl md:text-8xl lg:text-[7rem] font-black uppercase text-black leading-[0.9] tracking-tighter mb-8">
+            HAVE A PROJECT<br/><span className="text-brutal-purple">IN MIND?</span>
+          </h2>
+          
+          <div className="flex flex-col lg:flex-row gap-10 items-start lg:items-center justify-between border-t-4 border-black pt-8">
+            <p className="font-mono text-lg md:text-xl font-bold text-black/80 max-w-2xl leading-relaxed">
               Drop me an email, reach out on social channels, or submit your email to receive backend engineering and data science articles directly.
             </p>
-          </div>
-
-          {/* Simple Contact Form */}
-          <form
-            onSubmit={handleSubscribe}
-            className="w-full md:w-96 flex flex-col gap-3 p-4 bg-white border-4 border-black shadow-brutal rotate-[-0.5deg]"
-          >
-            <label className="font-mono text-xs font-black text-black">
-              NEWSLETTER.EXE //
-            </label>
-            <div className="flex border-2 border-black">
-              <input
-                type="email"
-                placeholder="YOUR_EMAIL@DOMAIN.COM"
+            
+            <form onSubmit={handleSubscribe} className="w-full lg:w-[500px] flex border-4 border-black shadow-brutal relative rotate-[1deg]">
+              <div className="absolute -top-4 -left-3 bg-brutal-light border-2 border-black px-2 py-0.5 font-mono text-[10px] font-black rotate-[-3deg] z-10">NEWSLETTER.EXE</div>
+              <input 
+                type="email" 
+                placeholder="YOUR_EMAIL@DOMAIN.COM" 
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                className="bg-brutal-light px-3 py-2 font-mono text-xs font-bold text-black placeholder-black/40 focus:outline-none w-full border-r-2 border-black"
-                required
+                className="w-full bg-brutal-yellow px-6 py-5 font-mono text-sm md:text-base font-black text-black placeholder-black/50 focus:outline-none border-r-4 border-black" 
+                required 
               />
-              <button
-                type="submit"
-                className="bg-brutal-yellow hover:bg-brutal-yellow/90 px-4 py-2 text-black cursor-pointer flex items-center justify-center font-black"
+              <button 
+                type="submit" 
+                className="bg-black hover:bg-brutal-green px-6 md:px-8 py-5 text-white hover:text-black font-black flex items-center justify-center transition-colors cursor-pointer group"
               >
-                {isSubmitted ? <Check className="w-4 h-4 text-black" /> : <Send className="w-4 h-4" />}
+                {isSubmitted ? <Check className="w-6 h-6" /> : <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
               </button>
-            </div>
-            {isSubmitted && (
-              <span className="font-mono text-[10px] font-black text-brutal-purple uppercase">
-                ★ SECURELY ADDED TO QUEUE!
-              </span>
-            )}
-          </form>
+            </form>
+          </div>
         </div>
 
-        {/* Dynamic Connect Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <a
-            href="mailto:officialsayan36@gmail.com"
-            className="brutal-btn-hover flex items-center justify-between p-5 bg-white border-4 border-black shadow-brutal text-black"
+        {/* Massive Contact Links */}
+        <div className="flex flex-col gap-6">
+          {/* Main Email Action */}
+          <a 
+            href="mailto:officialsayan36@gmail.com" 
+            className="group brutal-btn-hover w-full bg-white border-4 border-black p-6 md:p-10 shadow-brutal flex flex-col md:flex-row justify-between items-start md:items-center gap-6 rotate-[0.5deg]"
           >
-            <div className="flex items-center gap-3">
-              <Mail className="w-6 h-6" />
-              <div>
-                <span className="block font-mono text-[10px] font-bold text-gray-400">SEND EMAIL</span>
-                <span className="font-sans font-black text-sm uppercase">officialsayan36@gmail.com</span>
+            <div className="flex items-center gap-6 md:gap-8">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-brutal-orange border-4 border-black flex items-center justify-center shadow-brutal-sm group-hover:rotate-12 transition-transform shrink-0">
+                <Mail className="w-8 h-8 md:w-10 md:h-10 text-black" />
+              </div>
+              <div className="flex flex-col justify-center overflow-hidden">
+                <span className="block font-mono text-xs md:text-sm font-bold text-black/60 mb-1">PRIMARY_CONTACT_PROTOCOL</span>
+                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight truncate w-full break-all">officialsayan36@gmail.com</span>
               </div>
             </div>
+            <span className="font-mono text-sm font-black bg-brutal-yellow px-6 py-3 border-4 border-black shadow-brutal-sm hidden md:block group-hover:bg-brutal-green transition-colors">
+              INITIATE_PING
+            </span>
           </a>
 
-          <a
-            href="https://github.com/Sayan-CtrlZ"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brutal-btn-hover flex items-center justify-between p-5 bg-brutal-yellow border-4 border-black shadow-brutal text-black rotate-[0.5deg]"
-          >
-            <div className="flex items-center gap-3">
-              <Github className="w-6 h-6" />
-              <div>
-                <span className="block font-mono text-[10px] font-bold text-black/60">SOURCE REPOS</span>
-                <span className="font-sans font-black text-sm uppercase">GITHUB / Sayan-CtrlZ</span>
-              </div>
-            </div>
-          </a>
+          {/* Socials Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-2">
+            
+            <a href="https://github.com/Sayan-CtrlZ" target="_blank" rel="noopener noreferrer" className="group brutal-btn-hover bg-brutal-yellow border-4 border-black p-6 md:p-8 shadow-brutal flex flex-col justify-between min-h-[180px] rotate-[-1deg]">
+               <Github className="w-10 h-10 md:w-12 md:h-12 mb-6 group-hover:-translate-y-2 group-hover:scale-110 transition-transform text-black" />
+               <div>
+                  <span className="block font-mono text-[10px] font-bold text-black/60 mb-1">SOURCE REPOS</span>
+                  <span className="text-2xl font-black uppercase block leading-none">GITHUB</span>
+               </div>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/22sayanshil/" target="_blank" rel="noopener noreferrer" className="group brutal-btn-hover bg-brutal-green border-4 border-black p-6 md:p-8 shadow-brutal flex flex-col justify-between min-h-[180px] rotate-[1deg]">
+               <Linkedin className="w-10 h-10 md:w-12 md:h-12 mb-6 group-hover:-translate-y-2 group-hover:scale-110 transition-transform text-black" />
+               <div>
+                  <span className="block font-mono text-[10px] font-bold text-black/60 mb-1">WORK HISTORY</span>
+                  <span className="text-2xl font-black uppercase block leading-none">LINKEDIN</span>
+               </div>
+            </a>
+            
+            <a href="tel:+918974637506" className="group brutal-btn-hover bg-brutal-pink border-4 border-black p-6 md:p-8 shadow-brutal flex flex-col justify-between min-h-[180px] rotate-[-0.5deg]">
+               <Phone className="w-10 h-10 md:w-12 md:h-12 mb-6 group-hover:-translate-y-2 group-hover:scale-110 transition-transform text-black" />
+               <div>
+                  <span className="block font-mono text-[10px] font-bold text-black/60 mb-1">CALL DIRECTLY</span>
+                  <span className="text-xl font-black uppercase block leading-none tracking-tighter">+91 8974637506</span>
+               </div>
+            </a>
+            
+            <a href="https://www.instagram.com/sayan_ctrlz" target="_blank" rel="noopener noreferrer" className="group brutal-btn-hover bg-brutal-cyan border-4 border-black p-6 md:p-8 shadow-brutal flex flex-col justify-between min-h-[180px] rotate-[0.5deg]">
+               <Instagram className="w-10 h-10 md:w-12 md:h-12 mb-6 group-hover:-translate-y-2 group-hover:scale-110 transition-transform text-black" />
+               <div>
+                  <span className="block font-mono text-[10px] font-bold text-black/60 mb-1">SOCIAL MEDIA</span>
+                  <span className="text-2xl font-black uppercase block leading-none">IG / sayan</span>
+               </div>
+            </a>
 
-          <a
-            href="https://www.linkedin.com/in/22sayanshil/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brutal-btn-hover flex items-center justify-between p-5 bg-brutal-green border-4 border-black shadow-brutal text-black rotate-[-1deg]"
-          >
-            <div className="flex items-center gap-3">
-              <Linkedin className="w-6 h-6" />
-              <div>
-                <span className="block font-mono text-[10px] font-bold text-black/60">WORK HISTORY</span>
-                <span className="font-sans font-black text-sm uppercase">LINKEDIN / CONNECT</span>
-              </div>
-            </div>
-          </a>
+          </div>
         </div>
 
         {/* Footer Bottom Metadata and Scroll to Top */}

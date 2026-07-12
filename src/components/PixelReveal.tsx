@@ -1,11 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 export default function PixelReveal() {
   const container = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+  }, []);
 
   useGSAP(() => {
+    if (window.matchMedia("(max-width: 768px)").matches) return;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     
     if (prefersReducedMotion) {
@@ -29,6 +35,8 @@ export default function PixelReveal() {
       delay: 0.3
     });
   }, { scope: container });
+
+  if (isMobile) return null;
 
   // 10x10 grid = 100 blocks
   return (

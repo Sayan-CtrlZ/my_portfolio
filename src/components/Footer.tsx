@@ -11,7 +11,6 @@ export default function Footer() {
   const footerRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [utcTime, setUtcTime] = useState("");
 
   // Keep a live UTC clock ticking, which is very Neo-Brutalist
@@ -69,32 +68,24 @@ export default function Footer() {
     { scope: containerRef }
   );
 
-  const handleSubscribe = async (e: React.FormEvent) => {
+  const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.email.trim() && formData.message.trim()) {
-      setIsSubmitting(true);
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
+      // Fire and forget
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      }).catch(error => {
+        console.error("Background transmission failed:", error);
+      });
 
-        if (response.ok) {
-          setIsSubmitted(true);
-          setTimeout(() => setIsSubmitted(false), 3000);
-          setFormData({ name: "", email: "", message: "" });
-        } else {
-          alert("TRANSMISSION FAILED. SERVER OFFLINE.");
-        }
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        alert("TRANSMISSION FAILED. NETWORK ERROR.");
-      } finally {
-        setIsSubmitting(false);
-      }
+      // Show immediate success
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 3000);
+      setFormData({ name: "", email: "", message: "" });
     }
   };
 
@@ -156,12 +147,9 @@ export default function Footer() {
               
               <button 
                 type="submit" 
-                disabled={isSubmitting}
-                className="w-full bg-black hover:bg-brutal-green py-4 text-white hover:text-black font-black flex items-center justify-center gap-3 transition-colors cursor-pointer group border-2 border-black shadow-brutal-sm active:translate-x-1 active:translate-y-1 active:shadow-none disabled:opacity-50"
+                className="w-full bg-black hover:bg-brutal-green py-4 text-white hover:text-black font-black flex items-center justify-center gap-3 transition-colors cursor-pointer group border-2 border-black shadow-brutal-sm active:translate-x-1 active:translate-y-1 active:shadow-none"
               >
-                {isSubmitting ? (
-                  <>TRANSMITTING...</>
-                ) : isSubmitted ? (
+                {isSubmitted ? (
                   <><Check className="w-5 h-5" /> TRANSMISSION SENT</>
                 ) : (
                   <>INITIATE CONNECTION <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>

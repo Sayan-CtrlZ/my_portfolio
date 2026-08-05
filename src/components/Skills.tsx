@@ -170,9 +170,6 @@ export default function Skills() {
 
               {/* Skill Details */}
               <div className="relative z-10 flex-grow mt-4">
-                <span className="block font-mono text-[10px] font-bold text-black/60 mb-1">
-                  SKILL_NODE //
-                </span>
                 <h3 className="text-xl md:text-2xl font-black text-black leading-tight uppercase tracking-tight mb-2">
                   {skill.name}
                 </h3>
@@ -204,12 +201,12 @@ export default function Skills() {
               {isExpanded ? (
                 <>
                   <ChevronUp className="w-5 h-5 text-black" />
-                  COLLAPSE_NODE_GRID.EXE
+                  COLLAPSE_NODE
                 </>
               ) : (
                 <>
                   <ChevronDown className="w-5 h-5 text-black" />
-                  LOAD_MORE_NODES.EXE ({filteredSkills.length - 6} IN_STACK)
+                  LOAD_MORE_NODES ({filteredSkills.length - 6} IN_STACK)
                 </>
               )}
             </button>

@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { ArrowDownRight, Terminal, Sparkles, Code2 } from "lucide-react";
+import { ArrowDownRight, Terminal, Sparkles, Code2, Download } from "lucide-react";
 import HoverPixelImage from "./HoverPixelImage";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -209,20 +209,29 @@ export default function Hero() {
         </div>
 
         {/* Call to Actions */}
-        <div className="fade-in-element mt-8 flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
+        <div className="fade-in-element mt-8 flex flex-col sm:flex-row flex-wrap gap-5 w-full">
           <button
             onClick={handleScrollToContact}
-            className="group brutal-btn-hover w-full sm:w-auto flex items-center justify-center gap-2 bg-brutal-green text-black text-xl font-extrabold px-8 py-4 border-4 border-black shadow-brutal select-none cursor-pointer"
+            className="group brutal-btn-hover w-full sm:w-auto flex items-center justify-center gap-2 bg-brutal-green text-black text-xl font-extrabold px-6 py-4 border-4 border-black shadow-brutal select-none cursor-pointer"
           >
             GET IN TOUCH
             <ArrowDownRight className="w-6 h-6 transition-transform group-hover:rotate-45" />
           </button>
           
           <a
-            href="#projects"
-            className="group brutal-btn-hover w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-black text-xl font-extrabold px-8 py-4 border-4 border-black shadow-brutal text-center select-none cursor-pointer"
+            href="/resume.pdf"
+            download="Sayan_Resume.pdf"
+            className="group brutal-btn-hover w-full sm:w-auto flex items-center justify-center gap-2 bg-brutal-yellow text-black text-xl font-extrabold px-6 py-4 border-4 border-black shadow-brutal text-center select-none cursor-pointer"
           >
-            VIEW PROJECTS
+            RESUME.PDF
+            <Download className="w-6 h-6 transition-transform group-hover:translate-y-1" />
+          </a>
+
+          <a
+            href="#projects"
+            className="group brutal-btn-hover w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-black text-xl font-extrabold px-6 py-4 border-4 border-black shadow-brutal text-center select-none cursor-pointer"
+          >
+            PROJECTS
           </a>
         </div>
         </div>

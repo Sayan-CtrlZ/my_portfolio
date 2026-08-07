@@ -164,20 +164,24 @@ export default function Footer() {
           {/* Main Email Action */}
           <a 
             href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} 
-            className="group brutal-btn-hover w-full bg-white border-4 border-black p-6 md:p-10 shadow-brutal flex flex-col md:flex-row justify-between items-start md:items-center gap-6 rotate-[0.5deg]"
+            className="group brutal-btn-hover w-full bg-white hover:bg-brutal-pink border-4 border-black p-6 md:p-10 shadow-brutal flex flex-col md:flex-row justify-between items-start md:items-center gap-6 rotate-[0.5deg] transition-colors"
           >
             <div className="flex items-center gap-4 md:gap-8 min-w-0 w-full">
-              <div className="w-16 h-16 md:w-20 md:h-20 bg-brutal-orange border-4 border-black flex items-center justify-center shadow-brutal-sm group-hover:rotate-12 transition-transform shrink-0">
-                <Mail className="w-8 h-8 md:w-10 md:h-10 text-black" />
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-brutal-orange group-hover:bg-brutal-yellow border-4 border-black flex items-center justify-center shadow-brutal-sm group-hover:rotate-12 transition-all duration-300 shrink-0">
+                <Mail className="w-8 h-8 md:w-10 md:h-10 text-black group-hover:scale-110 transition-transform" />
               </div>
               <div className="flex flex-col justify-center overflow-hidden min-w-0 w-full">
-                <span className="block font-mono text-xs md:text-sm font-bold text-black/60 mb-1">PRIMARY_CONTACT_PROTOCOL</span>
-                <span className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight w-full break-all">{import.meta.env.VITE_CONTACT_EMAIL}</span>
+                <span className="block font-mono text-xs md:text-sm font-bold text-black/60 group-hover:text-black/80 mb-1 transition-colors">PRIMARY_CONTACT_PROTOCOL</span>
+                <span className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight w-full break-all border-b-4 border-transparent group-hover:border-black transition-colors">{import.meta.env.VITE_CONTACT_EMAIL}</span>
               </div>
             </div>
-            <span className="font-mono text-sm font-black bg-brutal-yellow px-6 py-3 border-4 border-black shadow-brutal-sm hidden md:block group-hover:bg-brutal-green transition-colors">
-              INITIATE_PING
-            </span>
+            
+            <div className="w-full md:w-auto mt-2 md:mt-0">
+              <span className="font-mono text-sm md:text-base font-black bg-brutal-yellow group-hover:bg-black group-hover:text-white px-6 py-4 border-4 border-black shadow-brutal-sm flex items-center justify-center gap-2 md:gap-3 transition-colors w-full">
+                INITIATE_PING
+                <Send className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </span>
+            </div>
           </a>
 
           {/* Socials Grid */}

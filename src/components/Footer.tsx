@@ -166,13 +166,13 @@ export default function Footer() {
             href={`mailto:${import.meta.env.VITE_CONTACT_EMAIL}`} 
             className="group brutal-btn-hover w-full bg-white border-4 border-black p-6 md:p-10 shadow-brutal flex flex-col md:flex-row justify-between items-start md:items-center gap-6 rotate-[0.5deg]"
           >
-            <div className="flex items-center gap-6 md:gap-8">
+            <div className="flex items-center gap-4 md:gap-8 min-w-0 w-full">
               <div className="w-16 h-16 md:w-20 md:h-20 bg-brutal-orange border-4 border-black flex items-center justify-center shadow-brutal-sm group-hover:rotate-12 transition-transform shrink-0">
                 <Mail className="w-8 h-8 md:w-10 md:h-10 text-black" />
               </div>
-              <div className="flex flex-col justify-center overflow-hidden">
+              <div className="flex flex-col justify-center overflow-hidden min-w-0 w-full">
                 <span className="block font-mono text-xs md:text-sm font-bold text-black/60 mb-1">PRIMARY_CONTACT_PROTOCOL</span>
-                <span className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight truncate w-full break-all">{import.meta.env.VITE_CONTACT_EMAIL}</span>
+                <span className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight w-full break-all">{import.meta.env.VITE_CONTACT_EMAIL}</span>
               </div>
             </div>
             <span className="font-mono text-sm font-black bg-brutal-yellow px-6 py-3 border-4 border-black shadow-brutal-sm hidden md:block group-hover:bg-brutal-green transition-colors">

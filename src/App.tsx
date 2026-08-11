@@ -4,6 +4,7 @@ import About from "./components/About";
 import Marquee from "./components/Marquee";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
+import GithubStats from "./components/GithubStats";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -28,6 +29,9 @@ export default function App() {
 
         {/* Section 4: Projects */}
         <Projects />
+
+        {/* Section 5: GitHub Stats */}
+        <GithubStats />
       </main>
 
       {/* Section 5: Contact / Footer */}

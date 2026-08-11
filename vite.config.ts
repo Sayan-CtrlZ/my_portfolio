@@ -5,6 +5,7 @@ import { defineConfig, Plugin } from 'vite';
 import dotenv from 'dotenv';
 import express from 'express';
 import contactHandler from './api/contact.js';
+import githubHandler from './api/github.js';
 
 // Load .env variables for local development
 dotenv.config();
@@ -27,6 +28,25 @@ function apiPlugin(): Plugin {
         
         try {
           await contactHandler(req, res);
+        } catch (error) {
+          console.error("Local API Error:", error);
+          res.status(500).json({ message: "Internal Server Error" });
+        }
+      });
+      
+      server.middlewares.use('/api/github', async (req: any, res: any) => {
+        // Polyfill Vercel/Express response methods for Connect
+        res.status = (code: number) => {
+          res.statusCode = code;
+          return res;
+        };
+        res.json = (data: any) => {
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify(data));
+        };
+        
+        try {
+          await githubHandler(req, res);
         } catch (error) {
           console.error("Local API Error:", error);
           res.status(500).json({ message: "Internal Server Error" });

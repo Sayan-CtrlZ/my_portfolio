@@ -9,11 +9,32 @@ export default async function handler(req, res) {
   if (!token || !username) {
     return res.status(500).json({ message: 'GitHub configuration missing in backend.' });
   }
+  
+  // Parse optional year parameter (fallback for local Vite dev server)
+  let year = req.query?.year;
+  if (!year && req.url) {
+    try {
+      const parsedUrl = new URL(req.url, 'http://localhost');
+      year = parsedUrl.searchParams.get('year');
+    } catch (e) {
+      console.error("Error parsing URL:", e);
+    }
+  }
+
+  let from = undefined;
+  let to = undefined;
+  
+  if (year && year !== 'default') {
+    // Exact ISO boundaries for the requested year
+    from = `${year}-01-01T00:00:00Z`;
+    to = `${year}-12-31T23:59:59Z`;
+  }
 
   const query = `
-    query ($username: String!) {
+    query ($username: String!, $from: DateTime, $to: DateTime) {
       user(login: $username) {
-        contributionsCollection {
+        contributionsCollection(from: $from, to: $to) {
+          contributionYears
           contributionCalendar {
             totalContributions
             weeks {
@@ -28,6 +49,12 @@ export default async function handler(req, res) {
     }
   `;
 
+  const variables = { username };
+  if (from && to) {
+    variables.from = from;
+    variables.to = to;
+  }
+
   try {
     const response = await fetch('https://api.github.com/graphql', {
       method: 'POST',
@@ -37,7 +64,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         query,
-        variables: { username },
+        variables,
       }),
     });
 
@@ -48,7 +75,8 @@ export default async function handler(req, res) {
       return res.status(500).json({ message: 'Error fetching GitHub data', errors: data.errors });
     }
 
-    const calendar = data.data.user.contributionsCollection.contributionCalendar;
+    const contributions = data.data.user.contributionsCollection;
+    const calendar = contributions.contributionCalendar;
     
     // Flatten weeks into a single array of days
     const days = calendar.weeks.flatMap(week => week.contributionDays);
@@ -74,13 +102,10 @@ export default async function handler(req, res) {
           foundTodayOrYesterday = true;
         }
       } else {
-        // If it's today and we have 0 contributions, we might still have a streak from yesterday.
         if (day.date === todayStr) {
           foundTodayOrYesterday = true; 
           continue;
         }
-        
-        // Break current streak calculation if a day in the past is 0
         break;
       }
     }
@@ -105,6 +130,7 @@ export default async function handler(req, res) {
       currentStreak,
       longestStreak,
       contributionDays: days,
+      availableYears: contributions.contributionYears
     });
   } catch (error) {
     console.error('GitHub API fetch error:', error);

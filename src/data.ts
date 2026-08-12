@@ -13,6 +13,7 @@ export interface Project {
   tags: string[];
   link: string;
   github?: string;
+  image?: string;
   color: string;
   accentColor: string;
 }
@@ -54,6 +55,7 @@ export const PROJECTS: Project[] = [
     tags: ["Python", "FastAPI", "Pandas", "Scikit-Learn"],
     link: "https://neuro.sayanbuilds.me",
     github: "https://github.com/Sayan-CtrlZ/Neural_net_Insights",
+    image: "/proj1.png",
     color: "bg-brutal-orange",
     accentColor: "bg-brutal-green",
   },

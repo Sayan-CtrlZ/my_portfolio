@@ -91,22 +91,33 @@ export default function Projects() {
                 key={project.id}
                 className={`project-card flex flex-col md:flex-row border-4 border-black ${project.color} shadow-brutal hover:shadow-brutal-lg hover:translate-y-[-4px] transition-all duration-100`}
               >
-                {/* Visual Placeholder block (Alt left/right on desktop) */}
+                {/* Visual block (Alt left/right on desktop) */}
                 <div
-                  className={`w-full md:w-2/5 p-8 flex items-center justify-center border-b-4 md:border-b-0 md:border-r-4 border-black ${
+                  className={`w-full md:w-2/5 flex items-center justify-center border-b-4 md:border-b-0 md:border-r-4 border-black ${
                     isEven ? "md:order-1" : "md:order-2 md:border-l-4 md:border-r-0"
-                  } bg-white relative overflow-hidden group min-h-[220px]`}
+                  } ${project.image ? "" : "p-8"} bg-white relative overflow-hidden group ${project.image ? "min-h-[320px]" : "min-h-[220px]"}`}
                 >
-                  {/* Brutalist design lines inside visual block */}
-                  <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
-                  <div className="absolute top-3 left-3 bg-black text-white font-mono text-[10px] font-bold px-2 py-0.5 border border-white">
-                    ASSET_BLOC // {project.id.toUpperCase()}
-                  </div>
-                  
-                  {/* Big central decorative icon */}
-                  <div className="w-20 h-20 border-4 border-black bg-white flex items-center justify-center shadow-brutal rotate-3 group-hover:rotate-12 transition-transform duration-200">
-                    <FolderGit className="w-10 h-10 text-black" />
-                  </div>
+                  {project.image ? (
+                    /* Actual project banner image */
+                    <img
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <>
+                      {/* Brutalist design lines inside visual block */}
+                      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+                      <div className="absolute top-3 left-3 bg-black text-white font-mono text-[10px] font-bold px-2 py-0.5 border border-white">
+                        ASSET_BLOC // {project.id.toUpperCase()}
+                      </div>
+                      
+                      {/* Big central decorative icon */}
+                      <div className="w-20 h-20 border-4 border-black bg-white flex items-center justify-center shadow-brutal rotate-3 group-hover:rotate-12 transition-transform duration-200">
+                        <FolderGit className="w-10 h-10 text-black" />
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Project Details */}
